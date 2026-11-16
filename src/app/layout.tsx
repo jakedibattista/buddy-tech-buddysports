@@ -5,7 +5,7 @@ import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import Link from "next/link";
 import Navigation from "./components/Navigation";
-import { Analytics } from "@vercel/analytics/react";
+import WebsiteAnalytics from "./components/WebsiteAnalytics";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { publicStructuredData } from "./lib/publicStructuredData";
 
@@ -198,7 +198,7 @@ export default function RootLayout({
             </div>
           </footer>
         </div>
-        <Analytics />
+        <WebsiteAnalytics />
         <SpeedInsights />
       </body>
     </html>

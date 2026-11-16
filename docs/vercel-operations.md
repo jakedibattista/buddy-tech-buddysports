@@ -53,6 +53,14 @@ redirect, which preserves paths and queries, including action-link parameters.
 Public page layouts declare their own canonical routes. Artwork export routes
 remain reachable but use `noindex,nofollow` and do not inherit the home canonical.
 
+In Web Analytics, compare `chatgpt_referral_visit` with
+`chatgpt_store_badge_click` and `chatgpt_partner_lead_received`. The site uses
+the `utm_source=chatgpt.com` tag or the exact `chatgpt.com` referrer and keeps a
+flag in the current tab so it survives navigation. The original conversion events
+continue to report sitewide totals. Store clicks measure intent to download.
+Lead events measure successful receipt storage. These events add no raw referral
+URL or inquiry details to their custom properties.
+
 ## Release checks
 
 The Vercel project requires the GitHub Actions `quality` check on the deployed
