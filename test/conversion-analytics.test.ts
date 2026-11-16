@@ -37,7 +37,7 @@ it('attributes both conversions after leaving a tagged landing page', async () =
   const nextPage = await import('../src/app/lib/conversionAnalytics');
   nextPage.trackConversion('store_badge_click', { store: 'app_store' });
   nextPage.trackConversion('partner_lead_received', { tier: 'partner' });
-  expect(track.mock.calls.map(([name]) => name)).toEqual([
+  expect(vi.mocked(track).mock.calls.map(([name]) => name)).toEqual([
     'chatgpt_referral_visit', 'store_badge_click', 'chatgpt_store_badge_click',
     'partner_lead_received', 'chatgpt_partner_lead_received',
   ]);
