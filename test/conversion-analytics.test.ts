@@ -110,3 +110,17 @@ it('keeps an explicit social source after navigating away from a link opened in 
     ['social_partner_lead_received', { source: 'youtube' }, undefined],
   ]);
 });
+
+
+it('attributes Instagram’s automatic bio tag to the Instagram channel', async () => {
+  vi.resetModules();
+  window.history.replaceState(null, '', '/?utm_source=ig&utm_medium=social&utm_content=link_in_bio');
+  const analytics = await import('../src/app/lib/conversionAnalytics');
+  expect(analytics.captureReferral()).toBe('instagram');
+  analytics.trackConversion('store_badge_click', { store: 'app_store' });
+  expect(vi.mocked(track).mock.calls).toEqual([
+    ['social_referral_visit', { source: 'instagram' }],
+    ['store_badge_click', { store: 'app_store' }],
+    ['social_store_badge_click', { source: 'instagram', store: 'app_store' }, undefined],
+  ]);
+});

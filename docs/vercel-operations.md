@@ -64,7 +64,8 @@ URL or inquiry details to their custom properties.
 For organic social links, use `https://buddysports.app/puckbuddy?utm_source=instagram`
 for downloads or `https://buddysports.app/partner?utm_source=instagram#contact`
 for inquiries. Substitute `facebook`, `tiktok` or `youtube` for the matching
-channel. A recognized tag takes precedence over a stored source. The website
+channel. Instagram’s automatic `utm_source=ig` also reports as `instagram`.
+A recognized tag takes precedence over a stored source. The website
 reports `social_referral_visit`, `social_store_badge_click` and
 `social_partner_lead_received` in standard Web Analytics. Drill into `source`
 for a channel breakdown. Store clicks also carry `store`. Arrival events count
