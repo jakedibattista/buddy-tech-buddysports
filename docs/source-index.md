@@ -38,7 +38,7 @@ Regenerate with `python3 scripts/check-repository.py --write-index` after adding
 | [src/app/components/ScrollAnimation.tsx](<../src/app/components/ScrollAnimation.tsx>) | Applies reusable viewport-entry animation to marketing sections. |
 | [src/app/components/SmartAppLink.tsx](<../src/app/components/SmartAppLink.tsx>) | Builds platform-aware download links while keeping click analytics in one component. |
 | [src/app/components/StoreBadges.tsx](<../src/app/components/StoreBadges.tsx>) | Displays the Apple and Google store badges using shared destination constants. |
-| [src/app/components/WebsiteAnalytics.tsx](<../src/app/components/WebsiteAnalytics.tsx>) | Installs website analytics and captures the initial ChatGPT referral before internal navigation. |
+| [src/app/components/WebsiteAnalytics.tsx](<../src/app/components/WebsiteAnalytics.tsx>) | Installs website analytics and captures the initial referral source before internal navigation. |
 | [src/app/delete-account/layout.tsx](<../src/app/delete-account/layout.tsx>) | Gives the delete-account page its canonical public URL without changing the shared shell. |
 | [src/app/delete-account/page.tsx](<../src/app/delete-account/page.tsx>) | Explains Puck Buddy account deletion from the app or through a verified support request. |
 | [src/app/demo/layout.tsx](<../src/app/demo/layout.tsx>) | Gives the demo page its canonical public URL without changing the shared shell. |
@@ -53,7 +53,7 @@ Regenerate with `python3 scripts/check-repository.py --write-index` after adding
 | [src/app/lacrosse/page.tsx](<../src/app/lacrosse/page.tsx>) | Lists external lacrosse products with their existing beta labels and destination links. |
 | [src/app/layout.tsx](<../src/app/layout.tsx>) | Owns shared metadata, public structured data, navigation, footer and the single analytics installation. |
 | [src/app/lib/constants.ts](<../src/app/lib/constants.ts>) | Owns shared product links, contact destinations and displayed marketing constants. |
-| [src/app/lib/conversionAnalytics.ts](<../src/app/lib/conversionAnalytics.ts>) | Records conversion telemetry without letting an SDK failure interrupt the user's action. Keeps a tab-scoped ChatGPT referral marker for store clicks and confirmed partner inquiries. |
+| [src/app/lib/conversionAnalytics.ts](<../src/app/lib/conversionAnalytics.ts>) | Records conversion telemetry without letting an SDK failure interrupt the user's action. Carries an allowlisted referral source within the current tab for conversion reporting. |
 | [src/app/lib/interactiveDemoCatalog.ts](<../src/app/lib/interactiveDemoCatalog.ts>) | Defines screenshot assets and navigation hotspots for the illustrative product demo. The demo uses fixed examples and does not upload media or run live analysis. |
 | [src/app/lib/partnerInquiry.ts](<../src/app/lib/partnerInquiry.ts>) | Encodes partner inquiry fields into an email draft URL without sending mail. |
 | [src/app/lib/partnerReceipt.ts](<../src/app/lib/partnerReceipt.ts>) | Stores immutable private inquiry receipts and a retryable notification outbox in Vercel Blob. Contact details stay in private storage and the configured inbox, never analytics or logs. |
