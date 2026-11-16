@@ -5,6 +5,11 @@ test.beforeEach(async ({ page }) => {
   await page.route('**/*', route => route.request().url().startsWith('http://127.0.0.1:3417') ? route.continue() : route.abort());
 });
 test('download chooser and partner inquiry are reachable', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByText('Download Puck Buddy', { exact: true })).toBeVisible();
+  await page.getByRole('link', { name: 'Team & partner inquiries' }).click();
+  await expect(page).toHaveURL(/\/partner#contact$/);
+  await expect(page.locator('#contact form')).toBeVisible();
   await page.goto('/puckbuddy');
   await expect(page.locator('a[href*="apps.apple.com"]').first()).toBeVisible();
   await expect(page.locator('a[href*="play.google.com"]').first()).toBeVisible();

@@ -105,32 +105,29 @@ export default function Home() {
                 transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.55, delay: 0.2, ease: [0.21, 1.11, 0.81, 0.99] }}
                 className="mt-9 sm:mt-10"
               >
+                <p className="mb-3 text-sm font-semibold text-white">Download Puck Buddy</p>
                 <StoreBadges location="home_hero" theme="dark" priority className="lg:justify-start" />
               </motion.div>
 
-              <motion.p
+              <motion.div
                 initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.5, delay: 0.3 }}
-                className="mt-6 text-sm text-white/55"
+                className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-3 text-sm lg:justify-start"
               >
+                <Link
+                  href="/partner#contact"
+                  className="rounded-lg border border-white/35 px-4 py-2.5 font-semibold text-white transition-colors hover:bg-white/10"
+                >
+                  Team &amp; partner inquiries
+                </Link>
                 <a
                   href="#how-it-works"
                   className="font-medium text-white/80 underline underline-offset-2 transition-colors hover:text-white"
                 >
                   See how it works
                 </a>
-                <span className="mx-3 text-white/25" aria-hidden>
-                  |
-                </span>
-                Teams, leagues &amp; brands —{" "}
-                <Link
-                  href="/partner"
-                  className="font-medium text-white/80 underline underline-offset-2 transition-colors hover:text-white"
-                >
-                  partner with us
-                </Link>
-              </motion.p>
+              </motion.div>
             </div>
 
             <HomeHeroVisual />
