@@ -95,3 +95,18 @@ it('replaces a legacy ChatGPT attribution with an explicit social link', async (
     'social_referral_visit', 'partner_lead_received', 'social_partner_lead_received',
   ]);
 });
+
+it('keeps an explicit social source after navigating away from a link opened in ChatGPT', async () => {
+  vi.resetModules();
+  vi.spyOn(document, 'referrer', 'get').mockReturnValue('https://chatgpt.com/');
+  window.history.replaceState(null, '', '/puckbuddy?utm_source=youtube');
+  const analytics = await import('../src/app/lib/conversionAnalytics');
+  expect(analytics.captureReferral()).toBe('youtube');
+  window.history.replaceState(null, '', '/partner#contact');
+  analytics.trackConversion('partner_lead_received');
+  expect(vi.mocked(track).mock.calls).toEqual([
+    ['social_referral_visit', { source: 'youtube' }],
+    ['partner_lead_received'],
+    ['social_partner_lead_received', { source: 'youtube' }, undefined],
+  ]);
+});

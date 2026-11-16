@@ -7,6 +7,7 @@ const legacyChatGPTKey = 'buddy-chatgpt-referral';
 const socialSources = ['instagram', 'facebook', 'tiktok', 'youtube'] as const;
 type ReferralSource = 'chatgpt' | (typeof socialSources)[number];
 let tabSource: ReferralSource | undefined;
+let checkedReferrer = false;
 
 function readSource(value: string | null): ReferralSource | undefined {
   if (value === 'chatgpt') return value;
@@ -17,9 +18,11 @@ export function captureReferral(): ReferralSource | undefined {
   if (typeof window === 'undefined') return undefined;
 
   const utm = new URLSearchParams(window.location.search).get('utm_source');
-  const referrerHost = document.referrer ? new URL(document.referrer).hostname : '';
   const taggedSource = readSource(utm === 'chatgpt.com' ? 'chatgpt' : utm);
-  const incoming = taggedSource ?? (referrerHost === 'chatgpt.com' ? 'chatgpt' : undefined);
+  // The document referrer stays the same during client-side navigation.
+  const referrer = checkedReferrer || taggedSource ? '' : document.referrer;
+  checkedReferrer = true;
+  const incoming = taggedSource ?? (referrer && new URL(referrer).hostname === 'chatgpt.com' ? 'chatgpt' : undefined);
 
   try {
     tabSource ??= readSource(window.sessionStorage.getItem(referralKey));
