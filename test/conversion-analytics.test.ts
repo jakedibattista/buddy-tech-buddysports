@@ -30,8 +30,8 @@ it('attributes both conversions after leaving a tagged landing page', async () =
   vi.resetModules();
   const analytics = await import('../src/app/lib/conversionAnalytics');
   window.history.replaceState(null, '', '/?utm_source=chatgpt.com');
-  expect(analytics.captureChatGPTReferral(true)).toBe(true);
-  expect(analytics.captureChatGPTReferral(true)).toBe(true);
+  expect(analytics.captureReferral()).toBe('chatgpt');
+  expect(analytics.captureReferral()).toBe('chatgpt');
   window.history.replaceState(null, '', '/partner');
   vi.resetModules();
   const nextPage = await import('../src/app/lib/conversionAnalytics');
@@ -50,15 +50,48 @@ it('recognizes the exact ChatGPT referrer with storage disabled', async () => {
   const analytics = await import('../src/app/lib/conversionAnalytics');
   vi.spyOn(document, 'referrer', 'get').mockReturnValue('https://chatgpt.com/');
   vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => { throw new Error('Storage blocked'); });
-  expect(analytics.captureChatGPTReferral()).toBe(true);
+  expect(analytics.captureReferral()).toBe('chatgpt');
 });
 
 it('leaves unrelated referrals untagged and handles server rendering', async () => {
   vi.resetModules();
   const analytics = await import('../src/app/lib/conversionAnalytics');
   vi.spyOn(document, 'referrer', 'get').mockReturnValue('https://chatgpt.com.example.test/');
-  expect(analytics.captureChatGPTReferral()).toBe(false);
+  expect(analytics.captureReferral()).toBeUndefined();
   vi.stubGlobal('window', undefined);
-  expect(analytics.captureChatGPTReferral()).toBe(false);
+  expect(analytics.captureReferral()).toBeUndefined();
   vi.unstubAllGlobals();
+});
+
+it.each(['instagram', 'facebook', 'tiktok', 'youtube'])('attributes %s visits and conversions across pages', async source => {
+  vi.resetModules();
+  window.history.replaceState(null, '', `/puckbuddy?utm_source=${source}`);
+  const landing = await import('../src/app/lib/conversionAnalytics');
+  expect(landing.captureReferral()).toBe(source);
+  expect(landing.captureReferral()).toBe(source);
+  landing.trackConversion('store_badge_click', { store: 'play_store', location: 'hero' });
+
+  vi.resetModules();
+  window.history.replaceState(null, '', '/partner#contact');
+  const partner = await import('../src/app/lib/conversionAnalytics');
+  partner.trackConversion('partner_lead_received', { tier: 'partner', delivery: 'private_receipt' });
+  expect(vi.mocked(track).mock.calls).toEqual([
+    ['social_referral_visit', { source }],
+    ['store_badge_click', { store: 'play_store', location: 'hero' }],
+    ['social_store_badge_click', { source, store: 'play_store' }, undefined],
+    ['partner_lead_received', { tier: 'partner', delivery: 'private_receipt' }],
+    ['social_partner_lead_received', { source }, undefined],
+  ]);
+});
+
+it('replaces a legacy ChatGPT attribution with an explicit social link', async () => {
+  vi.resetModules();
+  window.sessionStorage.setItem('buddy-chatgpt-referral', '1');
+  window.history.replaceState(null, '', '/partner?utm_source=instagram#contact');
+  const analytics = await import('../src/app/lib/conversionAnalytics');
+  expect(analytics.captureReferral()).toBe('instagram');
+  analytics.trackConversion('partner_lead_received');
+  expect(vi.mocked(track).mock.calls.map(([name]) => name)).toEqual([
+    'social_referral_visit', 'partner_lead_received', 'social_partner_lead_received',
+  ]);
 });

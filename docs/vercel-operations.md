@@ -61,6 +61,16 @@ continue to report sitewide totals. Store clicks measure intent to download.
 Lead events measure successful receipt storage. These events add no raw referral
 URL or inquiry details to their custom properties.
 
+For organic social links, use `https://buddysports.app/puckbuddy?utm_source=instagram`
+for downloads or `https://buddysports.app/partner?utm_source=instagram#contact`
+for inquiries. Substitute `facebook`, `tiktok` or `youtube` for the matching
+channel. A recognized tag takes precedence over a stored source. The website
+reports `social_referral_visit`, `social_store_badge_click` and
+`social_partner_lead_received` in standard Web Analytics. Drill into `source`
+for a channel breakdown. Store clicks also carry `store`. Arrival events count
+a recognized source entering or replacing the source in the current tab, and
+are not unique visitors. The partner event requires a successful receipt.
+
 ## Release checks
 
 The Vercel project requires the GitHub Actions `quality` check on the deployed
