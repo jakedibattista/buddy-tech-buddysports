@@ -11,6 +11,7 @@ let checkedReferrer = false;
 
 function readSource(value: string | null): ReferralSource | undefined {
   if (value === 'chatgpt') return value;
+  if (value === 'ig') return 'instagram';
   return socialSources.find(source => source === value);
 }
 
