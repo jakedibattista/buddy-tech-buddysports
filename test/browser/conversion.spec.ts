@@ -86,6 +86,12 @@ test('ChatGPT referrals reach both store-click and confirmed-inquiry analytics',
   await expect.poll(eventNames).toContain('chatgpt_store_badge_click');
   await page.getByRole('link', { name: 'Ask Buddy Tech about team access', exact: true }).click();
   await expect(page).toHaveURL(/\/partner#contact$/);
+  // Wait for the new page's form to handle input before filling its controlled fields.
+  const customDevelopment = page.getByRole('button', { name: 'Custom Development', exact: true });
+  await expect(async () => {
+    await customDevelopment.click();
+    await expect(customDevelopment).toHaveAttribute('aria-pressed', 'true');
+  }).toPass();
   await page.getByLabel('Name', { exact: false }).fill('Attribution Fixture');
   await page.getByLabel('Email', { exact: false }).fill('fixture@example.test');
   await page.getByLabel('Tell us more', { exact: false }).fill('Local attribution check');
