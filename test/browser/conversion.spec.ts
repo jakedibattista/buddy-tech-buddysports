@@ -67,6 +67,33 @@ test('partner receipt confirms only after the server acknowledges storage', asyn
   await expect(page.getByText('Your inquiry has been received.')).toBeVisible();
 });
 
+test('ChatGPT referrals reach both store-click and confirmed-inquiry analytics', async ({ page }) => {
+  await page.addInitScript(() => {
+    const browserWindow = window as unknown as { referralTestEvents: { name: string; data?: unknown }[]; va: (type: string, event: { name: string; data?: unknown }) => void };
+    browserWindow.referralTestEvents = [];
+    browserWindow.va = (type, event) => {
+      if (type === 'event') browserWindow.referralTestEvents.push(event);
+    };
+  });
+  await page.route('**/api/partner-inquiries', async route => {
+    const payload = route.request().postDataJSON();
+    await route.fulfill({ status: 201, contentType: 'application/json', body: JSON.stringify({ received: true, reference: payload.id }) });
+  });
+  const eventNames = () => page.evaluate(() => (window as unknown as { referralTestEvents: { name: string }[] }).referralTestEvents.map(event => event.name));
+  await page.goto('/puckbuddy?utm_source=chatgpt.com');
+  await expect.poll(eventNames).toContain('chatgpt_referral_visit');
+  await page.locator('a[href*="apps.apple.com"]').first().click();
+  await expect.poll(eventNames).toContain('chatgpt_store_badge_click');
+  await page.getByRole('link', { name: 'Ask Buddy Tech about team access', exact: true }).click();
+  await expect(page).toHaveURL(/\/partner#contact$/);
+  await page.getByLabel('Name', { exact: false }).fill('Attribution Fixture');
+  await page.getByLabel('Email', { exact: false }).fill('fixture@example.test');
+  await page.getByLabel('Tell us more', { exact: false }).fill('Local attribution check');
+  await page.getByRole('button', { name: 'Send inquiry', exact: true }).click();
+  await expect(page.getByText('Your inquiry has been received.')).toBeVisible();
+  await expect.poll(eventNames).toContain('chatgpt_partner_lead_received');
+});
+
 test('partner entrance animations stay inside the mobile viewport', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/partner');
