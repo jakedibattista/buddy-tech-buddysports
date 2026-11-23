@@ -158,6 +158,38 @@ export default function PuckBuddyPage() {
                 <p className="mt-4 text-lg text-gray-600 leading-relaxed">
                   Tap the phone screen to move through the app, open new screens, and use the menu under the phone to jump anywhere you want to go.
                 </p>
+                <dl className="mt-8 space-y-5 text-base leading-relaxed text-gray-600">
+                  <div>
+                    <dt className="font-semibold text-gray-900">How can I get feedback on my wrist shot?</dt>
+                    <dd className="mt-1">
+                      Choose a supported shooting drill in Puck Buddy and follow its filming instructions.
+                      Upload your practice video in the app to get a shot scorecard and coaching feedback.
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="font-semibold text-gray-900">What should be visible in my video?</dt>
+                    <dd className="mt-1">
+                      Keep the full player, stick, and follow-through in view. Film from the side or
+                      a slight angle, and check the instructions for your selected drill before recording.
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="font-semibold text-gray-900">What does the scorecard show?</dt>
+                    <dd className="mt-1">
+                      Review drill-specific technique scores and coaching notes, then compare saved
+                      results as you practice. Camera angle and lighting can affect the analysis.
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="font-semibold text-gray-900">Can my whole team get access?</dt>
+                    <dd className="mt-1">
+                      <a href="/partner#contact" className="font-medium text-blue-700 underline underline-offset-2">
+                        Ask Buddy Tech about team access
+                      </a>. Your program can arrange group access with a code players redeem in the app.
+                      Players covered by team-paid access can use that entitlement without another purchase.
+                    </dd>
+                  </div>
+                </dl>
               </div>
             </ScrollAnimation>
 
