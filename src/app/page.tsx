@@ -11,6 +11,7 @@ import ScrollAnimation from "./components/ScrollAnimation";
 import MobileStickyCTA from "./components/MobileStickyCTA";
 import HomeHeroVisual from "./components/HomeHeroVisual";
 import HowItWorks from "./components/HowItWorks";
+import { CustomerTeamLogos } from "./components/CustomerTeamLogos";
 import StoreBadges from "./components/StoreBadges";
 import RatingBadge from "./components/RatingBadge";
 import { CALENDLY_URL, APP_STORE_RATING, ANALYZED_VIDEO_COUNT_LABEL } from "./lib/constants";
@@ -151,6 +152,10 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <CustomerTeamLogos />
+      </div>
 
       {/* ──────────────── How it works ──────────────── */}
       <HowItWorks />
