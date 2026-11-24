@@ -116,12 +116,13 @@ export default function Home() {
                 transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.5, delay: 0.3 }}
                 className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-3 text-sm lg:justify-start"
               >
-                <Link
+                {/* Let the browser open the form during the first page load. */}
+                <a
                   href="/partner#contact"
                   className="rounded-lg border border-white/35 px-4 py-2.5 font-semibold text-white transition-colors hover:bg-white/10"
                 >
                   Team &amp; partner inquiries
-                </Link>
+                </a>
                 <a
                   href="#how-it-works"
                   className="font-medium text-white/80 underline underline-offset-2 transition-colors hover:text-white"
