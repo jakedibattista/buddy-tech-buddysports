@@ -29,7 +29,7 @@ const STEPS = [
   },
 ] as const;
 
-export default function HowItWorks() {
+export default function HowItWorks({ showDownload = true }: { showDownload?: boolean }) {
   return (
     <section id="how-it-works" className="scroll-mt-24 border-b border-gray-100 bg-white py-12 sm:py-16 lg:py-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -66,18 +66,20 @@ export default function HowItWorks() {
           ))}
         </div>
 
-        <ScrollAnimation delay={0.2}>
-          <div
-            id="get-app"
-            className="mx-auto mt-14 flex max-w-3xl scroll-mt-24 flex-col items-center rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50 to-white px-6 py-8 text-center shadow-sm sm:px-10"
-          >
-            <h3 className="text-2xl font-bold text-gray-900">Ready to train?</h3>
-            <p className="mt-2 max-w-lg text-gray-600">
-              Download Puck Buddy free and upload your first shooting video today.
-            </p>
-            <StoreBadges location="how_it_works" theme="light" className="mt-6" />
-          </div>
-        </ScrollAnimation>
+        {showDownload && (
+          <ScrollAnimation delay={0.2}>
+            <div
+              id="get-app"
+              className="mx-auto mt-14 flex max-w-3xl scroll-mt-24 flex-col items-center rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50 to-white px-6 py-8 text-center shadow-sm sm:px-10"
+            >
+              <h3 className="text-2xl font-bold text-gray-900">Ready to train?</h3>
+              <p className="mt-2 max-w-lg text-gray-600">
+                Download Puck Buddy free and upload your first shooting video today.
+              </p>
+              <StoreBadges location="how_it_works" theme="light" className="mt-6" />
+            </div>
+          </ScrollAnimation>
+        )}
       </div>
     </section>
   );
