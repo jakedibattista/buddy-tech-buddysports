@@ -63,41 +63,31 @@ body {
   color: #0c1524;
 }
 
-.customer-team-logos-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  min-height: 2.75rem;
-  margin-bottom: 0.75rem;
-}
-
-.customer-team-logos-header h2 {
-  margin: 0;
+.customer-team-logos-heading {
+  margin: 0 0 0.95rem;
   font-size: clamp(1.05rem, 2vw, 1.32rem);
   font-weight: 730;
   letter-spacing: -0.025em;
 }
 
-.customer-team-logos-control {
-  min-width: 4.5rem;
-  min-height: 2.75rem;
-  padding-inline: 0.65rem;
-  border: 1px solid #dfe5ed;
-  border-radius: 0.55rem;
-  background: #fff;
-  color: #334155;
-  font-size: 0.8rem;
-  font-weight: 600;
+.customer-team-logos-interaction {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  border: 0;
+  border-radius: 0.45rem;
+  padding: 0;
+  background: transparent;
   cursor: pointer;
 }
 
-.customer-team-logos-control:focus-visible {
+.customer-team-logos-interaction:focus-visible {
   outline: 2px solid #2563eb;
-  outline-offset: 3px;
+  outline-offset: -3px;
 }
 
 .customer-team-logos-viewport {
+  position: relative;
   overflow: hidden;
   container-type: inline-size;
   mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
@@ -158,10 +148,6 @@ body {
   .customer-team-logos-viewport:hover .customer-team-logos-track {
     animation-play-state: paused;
   }
-
-  .customer-team-logos-control:hover {
-    background: #f8fafc;
-  }
 }
 
 @media (max-width: 560px) {
@@ -176,7 +162,7 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .customer-team-logos-control,
+  .customer-team-logos-interaction,
   .customer-team-logos-group.customer-team-logos-duplicate {
     display: none;
   }

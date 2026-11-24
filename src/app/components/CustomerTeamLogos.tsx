@@ -15,17 +15,7 @@ export function CustomerTeamLogos() {
 
   return (
     <section className="customer-team-logos" aria-labelledby="customer-teams-heading">
-      <div className="customer-team-logos-header">
-        <h2 id="customer-teams-heading">Teams using Puck Buddy</h2>
-        <button
-          type="button"
-          className="customer-team-logos-control"
-          aria-label={paused ? "Resume team logo carousel" : "Pause team logo carousel"}
-          onClick={() => setPaused(!paused)}
-        >
-          {paused ? "Resume" : "Pause"}
-        </button>
-      </div>
+      <h2 id="customer-teams-heading" className="customer-team-logos-heading">Teams using Puck Buddy</h2>
       <div className="customer-team-logos-viewport">
         <div className="customer-team-logos-track" data-paused={paused}>
           {[false, true].map((duplicate) => (
@@ -53,6 +43,12 @@ export function CustomerTeamLogos() {
             </ul>
           ))}
         </div>
+        <button
+          type="button"
+          className="customer-team-logos-interaction"
+          aria-label={paused ? "Resume moving team logos" : "Pause moving team logos"}
+          onClick={() => setPaused((isPaused) => !isPaused)}
+        />
       </div>
     </section>
   );
