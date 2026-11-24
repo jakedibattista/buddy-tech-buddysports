@@ -27,6 +27,7 @@ Regenerate with `python3 scripts/check-repository.py --write-index` after adding
 | [src/app/api/partner-inquiries/retry/route.ts](<../src/app/api/partner-inquiries/retry/route.ts>) | Retries stored inquiry notifications only for the authenticated Vercel cron caller. |
 | [src/app/api/partner-inquiries/route.ts](<../src/app/api/partner-inquiries/route.ts>) | Accepts same-origin validated inquiries and confirms receipt only after private durable storage. |
 | [src/app/components/ContactForm.tsx](<../src/app/components/ContactForm.tsx>) | Collects required partner contact details and confirms server receipt while preserving inquiry details on errors. |
+| [src/app/components/CustomerTeamLogos.tsx](<../src/app/components/CustomerTeamLogos.tsx>) | Shows approved customer team logos with a pausable loop and a static reduced-motion layout. |
 | [src/app/components/ExternalProductLink.tsx](<../src/app/components/ExternalProductLink.tsx>) | Renders external product links with a clear new-tab cue. |
 | [src/app/components/HeroVideoCarousel.tsx](<../src/app/components/HeroVideoCarousel.tsx>) | Cycles hero previews while respecting the latest manual selection and reduced-motion preferences. Playback and the end listener share one video-element lifecycle. |
 | [src/app/components/HomeHeroVisual.tsx](<../src/app/components/HomeHeroVisual.tsx>) | Shows the homepage scorecard video with a static reduced-motion fallback. |

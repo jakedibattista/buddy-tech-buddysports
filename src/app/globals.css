@@ -54,3 +54,162 @@ body {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
+
+/* Sizes the team marks and controls a continuous logo loop which can be paused. */
+.customer-team-logos {
+  margin-top: 2.25rem;
+  padding-block: 1rem 1.65rem;
+  border-block: 1px solid #dfe5ed;
+  color: #0c1524;
+}
+
+.customer-team-logos-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  min-height: 2.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.customer-team-logos-header h2 {
+  margin: 0;
+  font-size: clamp(1.05rem, 2vw, 1.32rem);
+  font-weight: 730;
+  letter-spacing: -0.025em;
+}
+
+.customer-team-logos-control {
+  min-width: 4.5rem;
+  min-height: 2.75rem;
+  padding-inline: 0.65rem;
+  border: 1px solid #dfe5ed;
+  border-radius: 0.55rem;
+  background: #fff;
+  color: #334155;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.customer-team-logos-control:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 3px;
+}
+
+.customer-team-logos-viewport {
+  overflow: hidden;
+  container-type: inline-size;
+  mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+}
+
+.customer-team-logos-track {
+  display: flex;
+  width: max-content;
+  animation: customer-team-logo-loop 32s linear infinite;
+}
+
+.customer-team-logos-track[data-paused="true"] {
+  animation-play-state: paused;
+}
+
+.customer-team-logos-group {
+  display: flex;
+  flex: none;
+  justify-content: space-around;
+  gap: 1rem;
+  width: max-content;
+  min-width: 100cqw;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0 0.5rem;
+  list-style: none;
+}
+
+.customer-team-logos-team {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.55rem;
+  width: clamp(8.4rem, 18vw, 12rem);
+  color: #475569;
+  font-size: 0.79rem;
+  font-weight: 620;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.customer-team-logos-logo {
+  display: block;
+  width: 7.5rem;
+  height: 5rem;
+  object-fit: contain;
+}
+
+@keyframes customer-team-logo-loop {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (hover: hover) {
+  .customer-team-logos-viewport:hover .customer-team-logos-track {
+    animation-play-state: paused;
+  }
+
+  .customer-team-logos-control:hover {
+    background: #f8fafc;
+  }
+}
+
+@media (max-width: 560px) {
+  .customer-team-logos {
+    margin-top: 1.4rem;
+    padding-block: 0.65rem 1.2rem;
+  }
+
+  .customer-team-logos-track {
+    animation-duration: 23s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .customer-team-logos-control,
+  .customer-team-logos-group.customer-team-logos-duplicate {
+    display: none;
+  }
+
+  .customer-team-logos-viewport {
+    mask-image: none;
+  }
+
+  .customer-team-logos-track {
+    display: block;
+    width: auto;
+    animation: none;
+  }
+
+  .customer-team-logos-group {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    width: 100%;
+    padding: 0;
+  }
+
+  .customer-team-logos-team {
+    width: auto;
+    min-width: 0;
+  }
+
+  .customer-team-logos-logo {
+    max-width: 100%;
+  }
+
+  @media (max-width: 560px) {
+    .customer-team-logos-group {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+}

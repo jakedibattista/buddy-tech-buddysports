@@ -8,6 +8,7 @@ The app repository's [local workspace guide](https://github.com/jakedibattista/p
 | --- | --- |
 | Public pages and shared shell | src/app/page.tsx, route folders, layout.tsx |
 | Public discovery | `lib/publicStructuredData.ts` supplies canonical company, website and application identities through the root layout. `public/robots.txt` permits user-requested ChatGPT visits while retaining existing training-crawler exclusions; `sitemap.ts` lists public pages. `buddyllc.app` is a hosted redirect to `buddysports.app`, not a separate company website. |
+| Customer team logos | `src/app/components/CustomerTeamLogos.tsx` renders the homepage carousel from the approved assets in `public/images/team-logos/`. |
 | Download routing and conversion tracking | components/SmartAppLink.tsx, hooks/useAppStoreUrl.ts, lib/constants.ts |
 | Partner inquiries and private receipts | components/ContactForm.tsx, api/partner-inquiries/, lib/partnerSubmission.ts, lib/partnerReceipt.ts |
 | Retained manual email draft encoder | lib/partnerInquiry.ts |
@@ -114,3 +115,10 @@ completed meeting, trial or sale. Confirm bookings from Calendar evidence.
 Existing Calendly links and the original 30-minute booking option are preserved.
 Custom events use the existing Pro analytics installation and normal event usage;
 this change enables no paid add-on. Events blocked by privacy tools remain missing.
+
+## Customer logo assets
+
+The owner confirmed public use of the four active customer marks on both
+BuddyStats and Buddy Sports on November 23, 2026. The WebP files were prepared
+from those organizations’ saved logo artwork in BuddyStats. The public pages
+serve bundled images and keep team names available as text.
