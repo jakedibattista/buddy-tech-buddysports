@@ -7,10 +7,15 @@ test.beforeEach(async ({ page }) => {
 test('download chooser and partner inquiry are reachable', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByText('Download Puck Buddy', { exact: true })).toBeVisible();
-  await page.getByRole('link', { name: 'Team & partner inquiries' }).click();
+  await expect(page.getByRole('heading', { name: 'How it works' })).toBeAttached();
+  await expect(page.getByRole('heading', { name: 'Ready to train?' })).toHaveCount(0);
+  const partnerLink = page.getByRole('link', { name: 'Team & partner inquiries' });
+  await expect(partnerLink.locator('..')).toHaveCSS('opacity', '1');
+  await partnerLink.click();
   await expect(page).toHaveURL(/\/partner#contact$/);
   await expect(page.locator('#contact form')).toBeVisible();
   await page.goto('/puckbuddy');
+  await expect(page.getByRole('heading', { name: 'Ready to train?' })).toBeAttached();
   await expect(page.locator('a[href*="apps.apple.com"]').first()).toBeVisible();
   await expect(page.locator('a[href*="play.google.com"]').first()).toBeVisible();
   const booking = page.getByRole('link', { name: /Book a 15-minute coach demo/ });

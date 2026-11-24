@@ -159,7 +159,7 @@ export default function Home() {
       </div>
 
       {/* ──────────────── How it works ──────────────── */}
-      <HowItWorks />
+      <HowItWorks showDownload={false} />
 
       {/* ──────────────── Coaching contributors ──────────────── */}
       <section className="relative overflow-hidden bg-[radial-gradient(1100px_circle_at_10%_10%,rgba(37,99,235,0.22),transparent_55%),radial-gradient(900px_circle_at_90%_20%,rgba(34,197,94,0.16),transparent_55%),linear-gradient(to_bottom_right,#070A12,#0B1220,#070A12)] py-16 text-white sm:py-24 lg:py-28">
