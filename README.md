@@ -1,10 +1,10 @@
 # Buddy Tech — Website
 
-The public Buddy Tech website includes Puck Buddy product, download and support pages. Its primary checkout is `~/Code/CodeStuff/Buddy Tech - Website`. Built with the Next.js App Router.
+The public Buddy Tech website includes Puck Buddy product, download and support pages. Its primary checkout is `~/Code/CodeStuff/Buddy Tech - buddysports.app`. Built with the Next.js App Router.
 
-See the [Puck Buddy engineering map](https://github.com/jakedibattista/puckbuddy-app/blob/main/docs/ecosystem.md) for repository ownership, naming and the complete analysis lifecycle. Source integration and production deployment are separate states.
+See the [Puck Buddy engineering map](https://github.com/jakedibattista/buddy-tech-app/blob/main/docs/ecosystem.md) for repository ownership, naming and the complete analysis lifecycle. Source integration and production deployment are separate states.
 
-**Live site:** [buddysports.app](https://buddysports.app) · **Repo:** [github.com/jakedibattista/buddy-tech-website](https://github.com/jakedibattista/buddy-tech-website) · **Vercel:** `buddy-tech/puckbuddy-website`
+**Live site:** [buddysports.app](https://buddysports.app) · **Repo:** [github.com/jakedibattista/buddy-tech-buddysports](https://github.com/jakedibattista/buddy-tech-buddysports) · **Vercel:** `buddy-tech/puckbuddy-website`
 
 Start with [documentation navigation](docs/README.md) and [file responsibilities](docs/source-index.md) when changing code.
 
@@ -134,7 +134,7 @@ source and scope, including the since-retired standalone artwork tooling.
 
 ## Workspace layout and maintenance
 
-The primary local checkout is `~/Code/CodeStuff/Buddy Tech - Website`. It is the website Git root and the source for Vercel. The former `Puckbuddy-Vercel` parent was retired on November 2, 2026. Its local videos, brand assets, design context, settings and tools are preserved privately in `~/Code/CodeStuff/Puckbuddy-artifacts/2026-11/retired-website-parent-2026-11-02/files/`. The adjacent retirement manifest verifies all 8,963 archived entries. These source assets are separate from the runtime files in `public/` and are not included in website pushes.
+The primary local checkout is `~/Code/CodeStuff/Buddy Tech - buddysports.app`. It is the website Git root and the source for Vercel. The former `Puckbuddy-Vercel` parent was retired on November 2, 2026. Its local videos, brand assets, design context, settings and tools are preserved privately in `~/Code/CodeStuff/Buddy Tech - Other/Puckbuddy-artifacts/2026-11/retired-website-parent-2026-11-02/files/`. The adjacent retirement manifest verifies all 8,963 archived entries. These source assets are separate from the runtime files in `public/` and are not included in website pushes.
 
 - `src/app/`: routes, components, hooks and library code.
 - `public/`: website assets and captures used by retained public export routes.
