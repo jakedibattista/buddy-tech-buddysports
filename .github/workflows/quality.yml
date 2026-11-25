@@ -16,16 +16,32 @@ jobs:
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - name: Classify checked-out changes
+        id: scope
+        run: python3 scripts/ci_change_scope.py
+      - run: python3 scripts/check-repository.py
+      - run: python3 -m unittest discover -s scripts -p test_ci_change_scope.py
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        if: steps.scope.outputs.scope != 'housekeeping'
         with:
           package-manager-cache: false
           node-version: '24.14.0'
       - run: npm ci
-      - run: npm run check:repository
+        if: steps.scope.outputs.scope != 'housekeeping'
+      - run: python3 -m unittest discover -s scripts -p test_repository_conventions.py
       - run: npm run lint -- --max-warnings 0
+        if: steps.scope.outputs.scope != 'housekeeping'
       - run: npx tsc --noEmit
+        if: steps.scope.outputs.scope != 'housekeeping'
       - run: npm run test:coverage
+        if: steps.scope.outputs.scope != 'housekeeping'
       - run: npm run assets:audit:fail
+        if: steps.scope.outputs.scope != 'housekeeping'
       - run: npm run build
+        if: steps.scope.outputs.scope != 'housekeeping'
       - run: npx playwright install --with-deps chromium
+        if: steps.scope.outputs.scope != 'housekeeping'
       - run: npm run test:browser
+        if: steps.scope.outputs.scope != 'housekeeping'

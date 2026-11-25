@@ -81,3 +81,9 @@ local browser behavior. A ready build is not proof of promotion. Do not force
 promotion past a failed, missing, queued or timed-out check. Check the deployment
 commit and production alias after promotion; manual administrator overrides remain
 possible in Vercel.
+
+## GitHub Quality scope
+
+Verified Markdown-only changes run repository conventions and the CI scope tests.
+Runtime, asset and configuration changes run the existing hosted build, coverage
+and browser checks. Vercel continues to use the same GitHub check.
