@@ -87,3 +87,8 @@ possible in Vercel.
 Verified Markdown-only changes run repository conventions and the CI scope tests.
 Runtime, asset and configuration changes run the existing hosted build, coverage
 and browser checks. Vercel continues to use the same GitHub check.
+
+The fast path covers additions and edits to `README.md`, `CONTRIBUTING.md` and
+Markdown under `docs/`. A change that also touches source, assets or configuration
+runs the full workflow. Use **Run workflow** in GitHub Actions to run the full
+Quality checks manually.
